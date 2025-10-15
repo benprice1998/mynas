@@ -6,7 +6,7 @@ This is a list of feature ideas, not all are guaranteed to be implemented:
 4: usage reports
 5: hardware health
 6: email notifications
-
+7: Storage space reservation vs free use
 
 
 Possible enterprise features (if this ever gets to that point)
@@ -14,4 +14,4 @@ Possible enterprise features (if this ever gets to that point)
 2: Access permissions and roles
 3: Add in logging and SQL storage options for logs
 4: Backups
-5:
+5: encryption of files (may be useful if shared machine)
