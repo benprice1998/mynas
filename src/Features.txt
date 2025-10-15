@@ -1,0 +1,17 @@
+This is a list of feature ideas, not all are guaranteed to be implemented:
+
+1: Show cloud storage, such as google drive in app
+2: Allow AI training off local storage if they choose to connect to AI apps
+3: Upload/Download/Delete options from the client
+4: usage reports
+5: hardware health
+6: email notifications
+
+
+
+Possible enterprise features (if this ever gets to that point)
+1: LDAP support for sign ins
+2: Access permissions and roles
+3: Add in logging and SQL storage options for logs
+4: Backups
+5:
