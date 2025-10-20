@@ -61,16 +61,15 @@
 
 <header>
     <h2>Welcome to Your File Server</h2>
+
+    <!-- Add this block in your <main> section, under the welcome message -->
+    <h2>Drive Storage Info</h2>
+    <ul>
+        <li><strong>Total Space:</strong> <span th:text="${#numbers.formatDecimal(total / 1024 / 1024 / 1024, 0, 'COMMA', 2, 'POINT')} + ' GB'"></span></li>
+        <li><strong>Free Space:</strong> <span th:text="${#numbers.formatDecimal(free / 1024 / 1024 / 1024, 0, 'COMMA', 2, 'POINT')} + ' GB'"></span></li>
+        <li><strong>Usable Space:</strong> <span th:text="${#numbers.formatDecimal(usable / 1024 / 1024 / 1024, 0, 'COMMA', 2, 'POINT')} + ' GB'"></span></li>
+    </ul>
 </header>
-
-<!-- Add this block in your <main> section, under the welcome message -->
-<h2>Drive Storage Info</h2>
-<ul>
-    <li><strong>Total Space:</strong> <span th:text="${#numbers.formatDecimal(total / 1024 / 1024 / 1024, 0, 'COMMA', 2, 'POINT')} + ' GB'"></span></li>
-    <li><strong>Free Space:</strong> <span th:text="${#numbers.formatDecimal(free / 1024 / 1024 / 1024, 0, 'COMMA', 2, 'POINT')} + ' GB'"></span></li>
-    <li><strong>Usable Space:</strong> <span th:text="${#numbers.formatDecimal(usable / 1024 / 1024 / 1024, 0, 'COMMA', 2, 'POINT')} + ' GB'"></span></li>
-</ul>
-
 
 <main>
     <h1>Hello, User!</h1>
