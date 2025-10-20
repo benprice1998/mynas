@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - File Server</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+    <style>
+        :root {
+            --color-bg: #f4f6f8;
+            --color-text: #333;
+            --color-white: #ffffff;
+
+            /* Header */
+            --color-header-bg: #2c3e50;
+            --color-header-text: #ffffff;
+
+            /* Buttons */
+            --color-button-primary: #3498db;
+            --color-button-danger: #e74c3c;
+
+            /* Pie Chart */
+            --color-used: #e74c3c;
+            --color-free: #2ecc71;
+            --color-used-border: #c0392b;
+            --color-free-border: #27ae60;
+
+            /* Progress Bar */
+            --color-progress-fill: #3498db;
+            --color-progress-bg: #ddd;
+
+            /* Panels */
+            --color-panel-bg: #ffffff;
+            --color-panel-border: #ddd;
+
+            /* Footer */
+            --color-footer-text: #777;
+        }
+
+        :root[data-theme="dark"] {
+            --color-bg: #1e1e1e;
+            --color-text: #eaeaea;
+            --color-header-bg: #121212;
+            --color-header-text: #f0f0f0;
+            --color-panel-bg: #2a2a2a;
+            --color-panel-border: #444;
+            --color-progress-fill: #2980b9;
+            --color-progress-bg: #555;
+            --color-footer-text: #aaa;
+            --color-used: #e67e22;
+            --color-free: #27ae60;
+            --color-used-border: #d35400;
+            --color-free-border: #1abc9c;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        header {
+            background-color: var(--color-header-bg);
+            color: var(--color-header-text);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header-buttons input[type="submit"] {
+            background-color: var(--color-button-danger);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .top-right-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            padding: 1rem 2rem;
+        }
+
+        .top-right-controls button {
+            background-color: var(--color-button-primary);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .main-layout {
+            display: flex;
+            height: calc(100vh - 140px);
+            padding: 1rem 2rem;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--color-panel-bg);
+            padding: 1rem;
+            border-right: 1px solid var(--color-panel-border);
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .center-panel,
+        .right-panel {
+            flex: 1;
+            background-color: var(--color-panel-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: var(--color-progress-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-bar-fill {
+            height: 20px;
+            background-color: var(--color-progress-fill);
+            text-align: right;
+            padding-right: 10px;
+            color: white;
+            line-height: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: var(--color-footer-text);
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        .file-explorer {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .file-explorer table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .file-explorer th, .file-explorer td {
+            padding: 0.6rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-panel-border);
+        }
+
+        .file-explorer th {
+            background-color: var(--color-bg);
+            font-weight: bold;
+        }
+
+        .file-explorer tr:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .file-explorer .icon {
+            margin-right: 8px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Welcome to Your File Server</h1>
+    <div class="header-buttons">
+        <form action="/logout" method="post">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+</header>
+
+<!-- Upload/Browse Controls -->
+<div class="top-right-controls">
+    <form method="post" enctype="multipart/form-data" action="/upload">
+        <!--MAKE THIS A POPUP FOR THE FILE UPLOAD -->
+        <button type="submit">Upload</button>
+    </form>
+    <form action="/browse" method="get">
+        <button type="submit">Browse</button>
+    </form>
+</div>
+
+<!-- Main Layout -->
+<div class="main-layout">
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <h2>Disk Usage</h2>
+        <canvas id="diskChart"></canvas>
+
+        <ul>
+            <li>Total: <span th:text="${total}">0</span> GB</li>
+            <li>Free: <span th:text="${free}">0</span> GB</li>
+            <li>Used: <span th:text="${used}">0</span> GB</li>
+        </ul>
+
+        <div class="progress-bar">
+            <div class="progress-bar-fill"
+                 th:style="'width:' + ${percentUsed} + '%'">
+                <span th:text="${percentUsed.intValue()} + '%'">0%</span>
+            </div>
+        </div>
+
+        <h3>Mounted Partitions</h3>
+        <ul>
+            <li th:each="part : ${partitions}" th:text="${part}">/mnt/placeholder</li>
+        </ul>
+    </div>
+
+    <!-- Center + Right Panels -->
+    <div class="content">
+        <div class="center-panel">
+            <h2>Directory Viewer</h2>
+            <div class="file-explorer">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Size</th>
+                        <th>Last Modified</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Example static rows. Replace with dynamic Thymeleaf loop -->
+                    <tr>
+                        <td><span class="icon">📁</span> <a href="#" th:href="@{/browse?path=/Documents}">Documents</a></td>
+                        <td>Folder</td>
+                        <td>—</td>
+                        <td>2025-10-19 14:35</td>
+                    </tr>
+                    <tr>
+                        <td><span class="icon">📄</span> <a href="#" th:href="@{/download?file=/notes.txt}">notes.txt</a></td>
+                        <td>File</td>
+                        <td>12 KB</td>
+                        <td>2025-10-19 09:12</td>
+                    </tr>
+                    <!-- More rows dynamically inserted -->
+                    </tbody>
+                </table>
+            </div>
+
+
+            <p>Placeholder for folder tree or contents.</p>
+        </div>
+        <div class="right-panel">
+            <h2>File Details / Preview</h2>
+            <p>Placeholder for selected file info or preview.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 Local File Server
+</footer>
+
+
+
+<!-- Chart.js Setup -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const usedSpace = [[${usedRaw}]];
+    const freeSpace = [[${freeRaw}]];
+
+    //This is the section that will adjust themeing
+    document.documentElement.setAttribute('data-theme', 'dark');
+
+
+
+    // Get CSS color variables
+    const rootStyle = getComputedStyle(document.documentElement);
+    const colorUsed = rootStyle.getPropertyValue('--color-used').trim();
+    const colorFree = rootStyle.getPropertyValue('--color-free').trim();
+    const colorUsedBorder = rootStyle.getPropertyValue('--color-used-border').trim();
+    const colorFreeBorder = rootStyle.getPropertyValue('--color-free-border').trim();
+
+    const ctx = document.getElementById('diskChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Used Space', 'Free Space'],
+            datasets: [{
+                data: [usedSpace, freeSpace],
+                backgroundColor: [colorUsed, colorFree],
+                borderColor: [colorUsedBorder, colorFreeBorder],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' },
+                title: {
+                    display: true,
+                    text: 'Disk Usage (in GB)'
+                },
+                datalabels: {
+                    color: '#fff',
+                    formatter: (value) => value.toFixed(1) + ' GB',
+                    font: {
+                        weight: 'bold',
+                        size: 14
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
+    });
+    /*]]>*/
+</script>
+
+</body>
+</html>
