@@ -1,0 +1,363 @@
+/* Base variables for all themes (fallback) */
+:root {
+    --color-bg: #fff;
+    --color-text: #000;
+    --color-header-bg: #444;
+    --color-header-text: #fff;
+
+    --color-button-primary: #3498db;
+    --color-button-danger: #e74c3c;
+
+    --color-used: #e74c3c;
+    --color-free: #2ecc71;
+    --color-used-border: #c0392b;
+    --color-free-border: #27ae60;
+
+    --color-progress-fill: #3498db;
+    --color-progress-bg: #ddd;
+
+    --color-panel-bg: #fff;
+    --color-panel-border: #ddd;
+
+    --color-footer-text: #777;
+
+    --color-dropdown-bg: #fff;
+    --color-dropdown-text: #000;
+    --color-dropdown-border: #ccc;
+    --color-dropdown-arrow: #333;
+}
+/* Dark theme overrides */
+:root[data-theme='dark'] {
+    --color-bg: #1e1e1e;
+    --color-text: #eaeaea;
+    --color-white: #222;
+
+    --color-header-bg: #121212;
+    --color-header-text: #ffffff;
+
+    --color-button-primary: #2980b9;
+    --color-button-danger: #c0392b;
+
+    --color-used: #e67e22;
+    --color-free: #27ae60;
+    --color-used-border: #d35400;
+    --color-free-border: #1abc9c;
+
+    --color-progress-fill: #2980b9;
+    --color-progress-bg: #555;
+
+    --color-panel-bg: #2a2a2a;
+    --color-panel-border: #444;
+
+    --color-footer-text: #aaa;
+
+    /* Dropdown */
+    --color-dropdown-bg: #333;
+    --color-dropdown-text: #eaeaea;
+    --color-dropdown-border: #555;
+}
+/* 🌅 Solarized */
+:root[data-theme='solarized'] {
+    --color-bg: #fdf6e3;
+    --color-text: #657b83;
+    --color-header-bg: #268bd2;
+    --color-header-text: #fdf6e3;
+
+    --color-button-primary: #2aa198;
+    --color-button-danger: #dc322f;
+
+    --color-used: #b58900;
+    --color-free: #859900;
+    --color-used-border: #cb4b16;
+    --color-free-border: #586e75;
+
+    --color-progress-fill: #2aa198;
+    --color-progress-bg: #eee8d5;
+
+    --color-panel-bg: #eee8d5;
+    --color-panel-border: #93a1a1;
+
+    --color-footer-text: #586e75;
+
+    --color-dropdown-bg: #eee8d5;
+    --color-dropdown-text: #657b83;
+    --color-dropdown-border: #93a1a1;
+    --color-dropdown-arrow: #657b83;
+}
+
+/* 💻 Terminal Green */
+:root[data-theme='terminal'] {
+    --color-bg: #0b0c0a;
+    --color-text: #00ff00;
+    --color-header-bg: #002200;
+    --color-header-text: #00ff00;
+
+    --color-button-primary: #00cc00;
+    --color-button-danger: #cc0000;
+
+    --color-used: #009900;
+    --color-free: #00ff00;
+    --color-used-border: #006600;
+    --color-free-border: #00cc00;
+
+    --color-progress-fill: #00cc00;
+    --color-progress-bg: #003300;
+
+    --color-panel-bg: #001100;
+    --color-panel-border: #004400;
+
+    --color-footer-text: #006600;
+
+    --color-dropdown-bg: #001100;
+    --color-dropdown-text: #00ff00;
+    --color-dropdown-border: #004400;
+    --color-dropdown-arrow: #00ff00;
+}
+
+/* 🌈 Neon Hacker */
+:root[data-theme='neon'] {
+    --color-bg: #0f0f1f;
+    --color-text: #39ff14;
+    --color-header-bg: #1a1a2e;
+    --color-header-text: #39ff14;
+
+    --color-button-primary: #0aff99;
+    --color-button-danger: #ff005c;
+
+    --color-used: #ff00c8;
+    --color-free: #0aff99;
+    --color-used-border: #b00082;
+    --color-free-border: #07d06a;
+
+    --color-progress-fill: #0aff99;
+    --color-progress-bg: #202040;
+
+    --color-panel-bg: #1a1a2e;
+    --color-panel-border: #33334d;
+
+    --color-footer-text: #39ff14;
+
+    --color-dropdown-bg: #1a1a2e;
+    --color-dropdown-text: #39ff14;
+    --color-dropdown-border: #33334d;
+    --color-dropdown-arrow: #39ff14;
+}
+
+/* 🧸 Pastel Candy */
+:root[data-theme='pastel'] {
+    --color-bg: #fff0f6;
+    --color-text: #333;
+    --color-header-bg: #ffb6c1;
+    --color-header-text: #fff;
+
+    --color-button-primary: #ff69b4;
+    --color-button-danger: #ff1493;
+
+    --color-used: #ff7f50;
+    --color-free: #87cefa;
+    --color-used-border: #ff6347;
+    --color-free-border: #6495ed;
+
+    --color-progress-fill: #ff69b4;
+    --color-progress-bg: #ffe4ec;
+
+    --color-panel-bg: #ffe4ec;
+    --color-panel-border: #ffc0cb;
+
+    --color-footer-text: #ff69b4;
+
+    --color-dropdown-bg: #ffe4ec;
+    --color-dropdown-text: #333;
+    --color-dropdown-border: #ffc0cb;
+    --color-dropdown-arrow: #333;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+header {
+    background-color: var(--color-header-bg);
+    color: var(--color-header-text);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.header-buttons input[type="submit"] {
+    background-color: var(--color-button-danger);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.top-right-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem 2rem;
+}
+
+.top-right-controls button {
+    background-color: var(--color-button-primary);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.main-layout {
+    display: flex;
+    height: calc(100vh - 140px);
+    padding: 1rem 2rem;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--color-panel-bg);
+    padding: 1rem;
+    border-right: 1px solid var(--color-panel-border);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.center-panel,
+.right-panel {
+    flex: 1;
+    background-color: var(--color-panel-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: var(--color-progress-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-bar-fill {
+    height: 20px;
+    background-color: var(--color-progress-fill);
+    text-align: right;
+    padding-right: 10px;
+    color: white;
+    line-height: 20px;
+    font-size: 0.9rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-footer-text);
+}
+
+canvas {
+    max-width: 100%;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.file-explorer {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.file-explorer table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.file-explorer th, .file-explorer td {
+    padding: 0.6rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-panel-border);
+}
+
+.file-explorer th {
+    background-color: var(--color-bg);
+    font-weight: bold;
+}
+
+.file-explorer tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.file-explorer .icon {
+    margin-right: 8px;
+}
+
+.header-buttons select {
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+/* Dropdown base style */
+#themeSelector {
+    background-color: var(--color-dropdown-bg);
+    color: var(--color-dropdown-text);
+    border: 1px solid var(--color-dropdown-border);
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+    padding-right: 2rem;
+}
+
+
+/* Arrows per theme */
+:root #themeSelector {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+}
+:root[data-theme='solarized'] #themeSelector {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23657b83" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+}
+:root[data-theme='terminal'] #themeSelector {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2300ff00" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+}
+:root[data-theme='neon'] #themeSelector {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2339ff14" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+}
+:root[data-theme='pastel'] #themeSelector {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+}
